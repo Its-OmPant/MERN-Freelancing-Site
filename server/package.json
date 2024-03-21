@@ -1,0 +1,15 @@
+{
+	"name": "mern_freelancing_site",
+	"version": "1.0.0",
+	"description": "A MERN Project, a Freelancing portfolio site",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"author": "Om Pant",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.19.1"
+	}
+}
