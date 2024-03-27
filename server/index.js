@@ -7,14 +7,15 @@ import connectToDB from "./db/connectDB.js";
 import AuthRouter from "./router/auth-router.js";
 
 try {
-	await connectToDB("mongodb://127.0.0.1:27017/adminPanelDB");
+	await connectToDB(process.env.MONGODB_URL);
 	const app = express();
 	const PORT = 8000;
+
+	app.use(express.json()); //body parser
 
 	app.use("/api/auth", AuthRouter);
 
 	app.get("/", (req, res) => {
-		console.log(process.env.NAME);
 		res.send("Hello There");
 	});
 
