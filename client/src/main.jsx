@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 
+import "./main.css";
+
 // pages
-import Home from "../pages/Home.jsx";
-import About from "../pages/About.jsx";
-import Contact from "../pages/Contact.jsx";
-import Services from "../pages/Services.jsx";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
+import Services from "./pages/Services.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 
 import {
 	createBrowserRouter,
