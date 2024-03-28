@@ -1,6 +1,4 @@
 import User from "../models/userModel.js";
-
-import bcrypt from "bcryptjs";
 const home = (req, res) => {
 	res.send("Its Authentication Page of auth");
 };

@@ -5,6 +5,7 @@ import connectToDB from "./db/connectDB.js";
 
 // Routes
 import AuthRouter from "./router/auth-router.js";
+import ContactRouter from "./router/contact-router.js";
 
 try {
 	await connectToDB(process.env.MONGODB_URL);
@@ -14,6 +15,7 @@ try {
 	app.use(express.json()); //body parser
 
 	app.use("/api/auth", AuthRouter);
+	app.use("/api/contact", ContactRouter);
 
 	app.get("/", (req, res) => {
 		res.send("Hello There");
