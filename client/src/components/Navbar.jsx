@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
 	return (
-		<div className="flex justify-around bg-slate-600 p-4 text-white text-lg">
+		<div className="flex justify-around bg-purple-800 p-4 text-white text-lg">
 			<div className="">
 				<NavLink to="/">Freelancing</NavLink>
 			</div>
