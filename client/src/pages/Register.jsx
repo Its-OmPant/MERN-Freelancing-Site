@@ -22,16 +22,16 @@ function Register() {
 	};
 
 	return (
-		<div className="flex h-[90vh]">
+		<div className="flex h-[90vh] px-48">
 			<div className="flex items-center justify-center w-full">
 				<img
 					src="./images/registration.jpg"
 					alt="Registration form Image"
-					className="w-[70%]"
+					className="w-4/5"
 				/>
 			</div>
 			<div className="flex items-center justify-center w-full">
-				<div className="w-3/5 bg-blue-200 p-4 rounded-md shadow-md">
+				<div className="w-4/5 bg-blue-200 p-4 rounded-md shadow-md">
 					<h1 className="text-4xl m-4 font-bold">
 						<span className="underline text-pink-800">Registration</span> Form
 					</h1>

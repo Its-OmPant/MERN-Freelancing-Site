@@ -10,19 +10,44 @@ function Navbar() {
 			<div className="">
 				<ul className="flex gap-8">
 					<li>
-						<NavLink to="/about">About</NavLink>
+						<NavLink to="/" className="hover:underline underline-offset-2 ">
+							Home
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/services">Services</NavLink>
+						<NavLink
+							to="/about"
+							className="hover:underline underline-offset-2 ">
+							About
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/contact">Contact</NavLink>
+						<NavLink
+							to="/services"
+							className="hover:underline underline-offset-2 ">
+							Services
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/login">Login</NavLink>
+						<NavLink
+							to="/contact"
+							className="hover:underline underline-offset-2 ">
+							Contact
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/register">Register</NavLink>
+						<NavLink
+							to="/login"
+							className="hover:underline underline-offset-2 ">
+							Login
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to="/register"
+							className="hover:underline underline-offset-2 ">
+							Register
+						</NavLink>
 					</li>
 				</ul>
 			</div>
