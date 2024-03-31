@@ -11,6 +11,7 @@ import Contact from "./pages/Contact.jsx";
 import Services from "./pages/Services.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import Logout from "./pages/Logout.jsx";
 
 import {
 	createBrowserRouter,
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
 			<Route path="/services" element={<Services />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
+			<Route path="/logout" element={<Logout />} />
 		</Route>
 	)
 );

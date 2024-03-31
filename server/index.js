@@ -2,6 +2,7 @@ import { configDotenv } from "dotenv";
 configDotenv();
 import express from "express";
 import connectToDB from "./db/connectDB.js";
+import cors from "cors";
 
 // Routes
 import AuthRouter from "./router/auth-router.js";
@@ -12,6 +13,7 @@ try {
 	const app = express();
 	const PORT = 8000;
 
+	app.use(cors());
 	app.use(express.json()); //body parser
 
 	app.use("/api/auth", AuthRouter);

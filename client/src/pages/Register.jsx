@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../contexts/authContext.js";
 
 function Register() {
 	const initialState = {
@@ -8,17 +10,37 @@ function Register() {
 		password: "",
 	};
 	const [user, setUser] = useState(initialState);
+	const navigate = useNavigate();
+
+	const { storeTokenInLS } = useAuth();
 
 	const handleInput = (e) => {
 		// console.log(user[e.target.name]);
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		alert("Registration Successful");
-		console.log(user);
-		setUser(initialState);
+		try {
+			const response = await fetch("http://localhost:8000/api/auth/register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
+			});
+			console.log(response);
+
+			if (response.ok) {
+				const data = await response.json();
+				storeTokenInLS(data.token);
+				setUser(initialState);
+
+				navigate("/login");
+			}
+		} catch (error) {
+			console.log("Error : ", error);
+		}
 	};
 
 	return (

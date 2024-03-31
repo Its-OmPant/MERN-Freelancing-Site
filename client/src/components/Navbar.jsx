@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../contexts/authContext";
 
 function Navbar() {
+	const { isLoggedIn } = useAuth();
+
 	return (
 		<div className="flex justify-around bg-purple-800 p-4 text-white text-lg">
 			<div className="">
@@ -35,20 +38,32 @@ function Navbar() {
 							Contact
 						</NavLink>
 					</li>
-					<li>
-						<NavLink
-							to="/login"
-							className="hover:underline underline-offset-2 ">
-							Login
-						</NavLink>
-					</li>
-					<li>
-						<NavLink
-							to="/register"
-							className="hover:underline underline-offset-2 ">
-							Register
-						</NavLink>
-					</li>
+					{isLoggedIn ? (
+						<li>
+							<NavLink
+								to="/logout"
+								className="hover:underline underline-offset-2 ">
+								Logout
+							</NavLink>
+						</li>
+					) : (
+						<>
+							<li>
+								<NavLink
+									to="/login"
+									className="hover:underline underline-offset-2 ">
+									Login
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
+									to="/register"
+									className="hover:underline underline-offset-2 ">
+									Register
+								</NavLink>
+							</li>
+						</>
+					)}
 				</ul>
 			</div>
 		</div>

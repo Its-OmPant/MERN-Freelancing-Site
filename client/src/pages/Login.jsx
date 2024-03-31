@@ -1,18 +1,40 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../contexts/authContext.js";
 
 function Login() {
 	const initialState = { email: "", password: "" };
 	const [credentials, setCredentials] = useState(initialState);
-
+	const navigate = useNavigate();
+	const { storeTokenInLS } = useAuth();
 	const handleInput = (e) => {
 		setCredentials({ ...credentials, [e.target.name]: e.target.value });
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		alert("Login Successful");
-		console.log(credentials);
-		setCredentials(initialState);
+		try {
+			const response = await fetch("http://localhost:8000/api/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(credentials),
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				console.log(data);
+				storeTokenInLS(data.token);
+				navigate("/");
+				setCredentials(initialState);
+				alert("Login Successfully");
+			} else {
+				alert("Wrong Credentials");
+			}
+		} catch (error) {
+			console.error("Login Error :: ", error);
+		}
 	};
 	return (
 		<div className="flex h-[90vh] px-48">
