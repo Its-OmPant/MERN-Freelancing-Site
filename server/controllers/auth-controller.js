@@ -50,10 +50,19 @@ const login = async (req, res) => {
 	}
 };
 
+const user = (req, res) => {
+	try {
+		return res.status(200).json({ user: req.user });
+	} catch (error) {
+		console.log("User Controller Error :: ", error);
+	}
+};
+
 const authControllers = {
 	home,
 	register,
 	login,
+	user,
 };
 
 export default authControllers;
