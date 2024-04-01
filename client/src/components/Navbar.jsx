@@ -47,22 +47,13 @@ function Navbar() {
 							</NavLink>
 						</li>
 					) : (
-						<>
-							<li>
-								<NavLink
-									to="/login"
-									className="hover:underline underline-offset-2 ">
-									Login
-								</NavLink>
-							</li>
-							<li>
-								<NavLink
-									to="/register"
-									className="hover:underline underline-offset-2 ">
-									Register
-								</NavLink>
-							</li>
-						</>
+						<li>
+							<NavLink
+								to="/login"
+								className="hover:underline underline-offset-2 ">
+								Login
+							</NavLink>
+						</li>
 					)}
 				</ul>
 			</div>

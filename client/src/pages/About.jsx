@@ -1,12 +1,18 @@
 import React from "react";
+import useAuth from "../contexts/authContext";
 
 function About() {
+	const { user } = useAuth();
+
 	return (
 		<div className="px-48">
 			<div id="hero" className="flex justify-center my-4">
 				<div className=" p-4 flex flex-col justify-center">
 					<div className="my-4">
-						<h3 className="text-lg"> Welcome to Freelancing.co </h3>
+						<h3 className="text-lg">
+							{" "}
+							Welcome {user ? user.username : ""} to Freelancing.co{" "}
+						</h3>
 						<h1 className="text-5xl font-bold tracking-wide my-4">
 							Why
 							<span className="text-pink-900 underline underline-offset-8 ml-3">

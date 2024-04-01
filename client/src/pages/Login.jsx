@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../contexts/authContext.js";
 
@@ -75,6 +76,14 @@ function Login() {
 								className="p-2 rounded my-2 w-full"
 							/>
 						</div>
+						<p className="text-right text-md">
+							don't have an account ?{" "}
+							<NavLink
+								to="/register"
+								className="text-red-700 hover:underline underline-offset-2 ">
+								Register
+							</NavLink>
+						</p>
 						<button
 							type="submit"
 							className="w-full px-4 py-2 my-3 bg-blue-700  text-white hover:bg-blue-800 rounded-md">

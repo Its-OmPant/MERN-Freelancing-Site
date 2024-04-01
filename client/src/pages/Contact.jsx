@@ -1,18 +1,46 @@
 import React, { useState } from "react";
+import useAuth from "../contexts/authContext";
 
 function Contact() {
 	const initialState = { email: "", username: "", message: "" };
 	const [userMessage, setUserMessage] = useState(initialState);
 
+	const [userData, setUserData] = useState(true);
+	const { user } = useAuth();
+
+	if (userData && user) {
+		setUserMessage({
+			email: user.email,
+			username: user.username,
+			message: "",
+		});
+
+		setUserData(false);
+	}
+
 	const handleInput = (e) => {
 		setUserMessage({ ...userMessage, [e.target.name]: e.target.value });
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		alert("Contacted Successful");
-		console.log(userMessage);
-		setUserMessage(initialState);
+		try {
+			const response = await fetch("http://localhost:8000/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(userMessage),
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				console.log(data);
+				setUserMessage({ ...userMessage, message: "" });
+			}
+		} catch (error) {
+			console.log("Error in contact: ", error);
+		}
 	};
 	return (
 		<div className="flex h-[90vh] px-48">

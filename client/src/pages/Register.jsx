@@ -35,8 +35,7 @@ function Register() {
 				const data = await response.json();
 				storeTokenInLS(data.token);
 				setUser(initialState);
-
-				navigate("/login");
+				navigate("/");
 			}
 		} catch (error) {
 			console.log("Error : ", error);
