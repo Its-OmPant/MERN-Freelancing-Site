@@ -7,6 +7,7 @@ import cors from "cors";
 // Routes
 import AuthRouter from "./router/auth-router.js";
 import ContactRouter from "./router/contact-router.js";
+import serviceRouter from "./router/service-router.js";
 
 try {
 	await connectToDB(process.env.MONGODB_URL);
@@ -18,6 +19,7 @@ try {
 
 	app.use("/api/auth", AuthRouter);
 	app.use("/api/contact", ContactRouter);
+	app.use("/api/service", serviceRouter);
 
 	app.get("/", (req, res) => {
 		res.send("Hello There");
