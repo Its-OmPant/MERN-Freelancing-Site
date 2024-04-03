@@ -9,7 +9,7 @@ const contactMe = async (req, res) => {
 		res.status(201).json({ msg: "Message sent", data: newContact });
 	} catch (error) {
 		console.log(error);
-		res.status(400).json({ error });
+		res.status(400).json({ msg: error });
 	}
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../contexts/authContext.js";
+import toast from "react-hot-toast";
 
 function Login() {
 	const initialState = { email: "", password: "" };
@@ -22,16 +23,14 @@ function Login() {
 				},
 				body: JSON.stringify(credentials),
 			});
-
+			const data = await response.json();
 			if (response.ok) {
-				const data = await response.json();
-				console.log(data);
 				storeTokenInLS(data.token);
 				navigate("/");
 				setCredentials(initialState);
-				alert("Login Successfully");
+				toast.success("Logged In successfully");
 			} else {
-				alert("Wrong Credentials");
+				toast.error(data.errors);
 			}
 		} catch (error) {
 			console.error("Login Error :: ", error);
@@ -62,6 +61,7 @@ function Login() {
 								value={credentials.email}
 								onChange={handleInput}
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<div>
@@ -74,6 +74,7 @@ function Login() {
 								value={credentials.password}
 								onChange={handleInput}
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<p className="text-right text-md">

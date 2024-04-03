@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../contexts/authContext.js";
+import toast from "react-hot-toast";
 
 function Register() {
 	const initialState = {
@@ -31,11 +32,16 @@ function Register() {
 			});
 			console.log(response);
 
+			const data = await response.json();
 			if (response.ok) {
-				const data = await response.json();
 				storeTokenInLS(data.token);
 				setUser(initialState);
+				toast.success("Registered Successfully");
+				toast.success("Logged In Successfully");
 				navigate("/");
+			} else {
+				console.log("data", data);
+				toast.error(data.errors?.message ? data.errors.message : data.message);
 			}
 		} catch (error) {
 			console.log("Error : ", error);
@@ -67,6 +73,7 @@ function Register() {
 								value={user.username}
 								onChange={handleInput}
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<div>
@@ -79,6 +86,7 @@ function Register() {
 								value={user.email}
 								onChange={handleInput}
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<div>
@@ -91,6 +99,7 @@ function Register() {
 								onChange={handleInput}
 								value={user.phone}
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<div>
@@ -103,6 +112,7 @@ function Register() {
 								onChange={handleInput}
 								placeholder="Password"
 								className="p-2 rounded my-2 w-full"
+								required={true}
 							/>
 						</div>
 						<button

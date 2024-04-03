@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../contexts/authContext";
+import toast from "react-hot-toast";
 
 function Contact() {
 	const initialState = { email: "", username: "", message: "" };
@@ -33,10 +34,13 @@ function Contact() {
 				body: JSON.stringify(userMessage),
 			});
 
+			const data = await response.json();
 			if (response.ok) {
-				const data = await response.json();
+				toast.success("Message sent");
 				console.log(data);
 				setUserMessage({ ...userMessage, message: "" });
+			} else {
+				toast.error(data.errors?.message);
 			}
 		} catch (error) {
 			console.log("Error in contact: ", error);

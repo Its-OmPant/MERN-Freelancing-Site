@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast";
+
 //context
 import { AuthContextProvider } from "./contexts/authContext.js";
 
@@ -55,6 +57,7 @@ function App() {
 
 	return (
 		<AuthContextProvider value={{ storeTokenInLS, logout, isLoggedIn, user }}>
+			<Toaster position="top-right" />
 			<Navbar />
 			<Outlet />
 			<Footer />

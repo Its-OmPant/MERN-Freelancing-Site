@@ -10,7 +10,7 @@ const register = async (req, res) => {
 		const userExist = await User.findOne({ email });
 
 		if (userExist) {
-			return res.status(400).send("User already Exist...");
+			return res.status(400).json({ message: "User already exist" });
 		}
 
 		const userCreated = await User.create({ username, email, phone, password });
@@ -31,7 +31,7 @@ const login = async (req, res) => {
 		const user = await User.findOne({ email });
 
 		if (!user) {
-			return res.status(400).json({ msg: "Invalid Credentials" });
+			return res.status(400).json({ errors: "User doesn't exist!!" });
 		}
 
 		const isPasswordMatched = await user.comparePassword(password);
@@ -43,7 +43,7 @@ const login = async (req, res) => {
 				userID: user._id.toString(),
 			});
 		} else {
-			res.status(401).json({ msg: "Invalid useremail or password" });
+			res.status(401).json({ errors: "Invalid useremail or password" });
 		}
 	} catch (error) {
 		console.log(error);
