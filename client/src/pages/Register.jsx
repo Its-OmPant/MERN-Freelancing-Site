@@ -44,7 +44,8 @@ function Register() {
 				toast.error(data.errors?.message ? data.errors.message : data.message);
 			}
 		} catch (error) {
-			console.log("Error : ", error);
+			toast.error("Unable to register something unexpenced happened");
+			// console.log("Error : ", error);
 		}
 	};
 

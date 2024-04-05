@@ -33,7 +33,8 @@ function Login() {
 				toast.error(data.errors);
 			}
 		} catch (error) {
-			console.error("Login Error :: ", error);
+			toast.error("Unable to login, Something unexpected happened");
+			// console.error("Login Error :: ", error);
 		}
 	};
 	return (
