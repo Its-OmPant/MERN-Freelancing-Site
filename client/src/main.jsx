@@ -14,6 +14,7 @@ import Register from "./pages/Register.jsx";
 import Logout from "./pages/Logout.jsx";
 
 import AdminLayout from "./pages/Admin/AdminLayout.jsx";
+import AdminHome from "./pages/Admin/AdminHome.jsx";
 import AllUsers from "./pages/Admin/AllUsers.jsx";
 import AllContacts from "./pages/Admin/AllContacts.jsx";
 import AllServices from "./pages/Admin/AllServices.jsx";
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
 			<Route path="/logout" element={<Logout />} />
 		</Route>,
 		<Route path="/admin" element={<AdminLayout />}>
+			<Route path="" element={<AdminHome />} />
 			<Route path="users" element={<AllUsers />} />
 			<Route path="contacts" element={<AllContacts />} />
 			<Route path="services" element={<AllServices />} />

@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import useAuth from "../../contexts/authContext.js";
 
-function Row({ u }) {
+function Row({ u, deleteContact }) {
 	return (
 		<tr className="text-center hover:bg-slate-600 ">
-			<td>{u.username}</td>
-			<td>{u.email}</td>
-			<td>{u.message}</td>
-			<td>Update</td>
-			<td>Delete</td>
+			<td className="py-2">{u.username}</td>
+			<td className="py-2">{u.email}</td>
+			<td className="py-2 w-1/5">{u.message}</td>
+			<td className="py-2">
+				<button
+					onClick={() => {
+						deleteContact(u["_id"]);
+					}}
+					className="w-1/2 h-full my-2  bg-red-500 rounded-md hover:scale-110">
+					Delete
+				</button>
+			</td>
+			<td className="py-2">Update</td>
 		</tr>
 	);
 }
@@ -18,6 +27,27 @@ function AllContacts() {
 	const [contacts, setContacts] = useState([]);
 
 	const { token } = useAuth();
+
+	const deleteContact = async (id) => {
+		try {
+			// console.log(id);
+			const res = await fetch(
+				`http://localhost:8000/api/admin/contacts/${id}`,
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+			if (res.ok) {
+				toast.success("Contact Deleted");
+				getData();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const getData = async () => {
 		const response = await fetch("http://localhost:8000/api/admin/contacts", {
@@ -48,13 +78,13 @@ function AllContacts() {
 						<th>Name</th>
 						<th>Email</th>
 						<th>Message</th>
-						<th>Update</th>
 						<th>Delete</th>
+						<th>Update</th>
 					</tr>
 				</thead>
 				<tbody>
 					{contacts.map((u) => (
-						<Row u={u} key={u["_id"]} />
+						<Row deleteContact={deleteContact} u={u} key={u["_id"]} />
 					))}
 				</tbody>
 			</table>
