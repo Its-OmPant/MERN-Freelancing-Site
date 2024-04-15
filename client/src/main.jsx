@@ -13,6 +13,10 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Logout from "./pages/Logout.jsx";
 
+import AdminLayout from "./pages/Admin/AdminLayout.jsx";
+import AllUsers from "./pages/Admin/AllUsers.jsx";
+import AllContacts from "./pages/Admin/AllContacts.jsx";
+import AllServices from "./pages/Admin/AllServices.jsx";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
@@ -21,7 +25,7 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter(
-	createRoutesFromElements(
+	createRoutesFromElements([
 		<Route path="/" element={<App />}>
 			<Route path="" element={<Home />} />
 			<Route path="/about" element={<About />} />
@@ -30,8 +34,13 @@ const router = createBrowserRouter(
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<Register />} />
 			<Route path="/logout" element={<Logout />} />
-		</Route>
-	)
+		</Route>,
+		<Route path="/admin" element={<AdminLayout />}>
+			<Route path="users" element={<AllUsers />} />
+			<Route path="contacts" element={<AllContacts />} />
+			<Route path="services" element={<AllServices />} />
+		</Route>,
+	])
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
