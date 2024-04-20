@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
+import { Link } from "react-router-dom";
 import useAuth from "../../contexts/authContext.js";
 
 function Row({ u, deleteService }) {
@@ -19,7 +19,13 @@ function Row({ u, deleteService }) {
 					Delete
 				</button>
 			</td>
-			<td className="py-2">Update</td>
+			<td className="py-2">
+				<Link
+					className="p-1  bg-green-500 rounded-md hover:scale-110"
+					to={`/admin/services/${u["_id"]}`}>
+					Update
+				</Link>
+			</td>
 		</tr>
 	);
 }

@@ -10,9 +10,12 @@ router.route("/").get(authVerifier, adminMiddleware);
 router
 	.route("/users")
 	.get(authVerifier, adminMiddleware, adminControllers.getUsers);
+
 router
 	.route("/users/:id")
-	.delete(authVerifier, adminMiddleware, adminControllers.deleteUser);
+	.get(authVerifier, adminMiddleware, adminControllers.getUserById)
+	.delete(authVerifier, adminMiddleware, adminControllers.deleteUser)
+	.patch(authVerifier, adminMiddleware, adminControllers.updateUser);
 
 // Contacts Routes
 router
@@ -28,6 +31,8 @@ router
 	.get(authVerifier, adminMiddleware, adminControllers.getServices);
 router
 	.route("/services/:id")
-	.delete(authVerifier, adminMiddleware, adminControllers.deleteService);
+	.get(authVerifier, adminMiddleware, adminControllers.getServiceById)
+	.delete(authVerifier, adminMiddleware, adminControllers.deleteService)
+	.patch(authVerifier, adminMiddleware, adminControllers.updateService);
 
 export default router;

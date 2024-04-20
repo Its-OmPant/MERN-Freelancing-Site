@@ -33,6 +33,38 @@ const deleteUser = async (req, res) => {
 	}
 };
 
+const getUserById = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const user = await User.findById(id).select({ password: 0 });
+		return res.status(200).json({ message: user });
+	} catch (error) {
+		console.log("Admin Controller Error at getUserById :: ", error);
+		return res
+			.status(400)
+			.json({ message: "some error occured while Fetching a user" });
+	}
+};
+
+const updateUser = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const { username, email, phone } = req.body;
+
+		const updatedUser = await User.findByIdAndUpdate(
+			id,
+			{ username, email, phone },
+			{ returnDocument: "after" }
+		);
+		return res.status(200).json({ message: `User Updated Successfully` });
+	} catch (error) {
+		console.log("Admin Controller Error at updateUser :: ", error);
+		return res
+			.status(400)
+			.json({ message: "some error occured while updating user" });
+	}
+};
+
 // Contact Model Controllers
 
 const getContacts = async (req, res) => {
@@ -97,13 +129,50 @@ const deleteService = async (req, res) => {
 	}
 };
 
+const getServiceById = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const service = await Service.findById(id);
+		return res.status(200).json({ message: service });
+	} catch (error) {
+		console.log("Admin Controller Error at getServiceById Error :: ", error);
+		res
+			.status(400)
+			.json({ message: "some error occured while fetching a Service" });
+	}
+};
+
+const updateService = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const { service, description, price, provider } = req.body;
+
+		const updatedService = await Service.findByIdAndUpdate(
+			id,
+			{ service, description, price, provider },
+			{ returnDocument: "after" }
+		);
+
+		res.status(200).json("Service Data Updated in DB Successfully");
+	} catch (error) {
+		console.log("Admin Controller Error at updateService, Error :: ", error);
+		res
+			.status(400)
+			.json({ message: "some error occured while updating a Service" });
+	}
+};
+
 const controllers = {
 	getUsers,
+	getUserById,
 	getContacts,
 	getServices,
 	deleteUser,
 	deleteContact,
 	deleteService,
+	updateUser,
+	getServiceById,
+	updateService,
 };
 
 export default controllers;

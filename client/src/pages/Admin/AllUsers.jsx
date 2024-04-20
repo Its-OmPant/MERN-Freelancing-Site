@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 import useAuth from "../../contexts/authContext.js";
 
@@ -18,7 +19,13 @@ function Row({ u, deleteUser }) {
 					Delete
 				</button>
 			</td>
-			<td className="py-2">Update</td>
+			<td className="py-2">
+				<Link
+					className="p-1  bg-green-500 rounded-md hover:scale-110"
+					to={`/admin/users/${u["_id"]}`}>
+					Update
+				</Link>
+			</td>
 		</tr>
 	);
 }
@@ -68,6 +75,7 @@ function AllUsers() {
 	return (
 		<div className="w-full">
 			<h1 className="bg-yellow-700 p-3 my-2  text-xl font-bold">All Users</h1>
+
 			<table className="w-full">
 				<thead className="bg-teal-800">
 					<tr>

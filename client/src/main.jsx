@@ -18,6 +18,8 @@ import AdminHome from "./pages/Admin/AdminHome.jsx";
 import AllUsers from "./pages/Admin/AllUsers.jsx";
 import AllContacts from "./pages/Admin/AllContacts.jsx";
 import AllServices from "./pages/Admin/AllServices.jsx";
+import UpdateUser from "./pages/Admin/UpdateUser.jsx";
+import UpdateService from "./pages/Admin/UpdateService.jsx";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
@@ -39,8 +41,10 @@ const router = createBrowserRouter(
 		<Route path="/admin" element={<AdminLayout />}>
 			<Route path="" element={<AdminHome />} />
 			<Route path="users" element={<AllUsers />} />
+			<Route path="users/:id" element={<UpdateUser />} />
 			<Route path="contacts" element={<AllContacts />} />
 			<Route path="services" element={<AllServices />} />
+			<Route path="services/:id" element={<UpdateService />} />
 		</Route>,
 	])
 );

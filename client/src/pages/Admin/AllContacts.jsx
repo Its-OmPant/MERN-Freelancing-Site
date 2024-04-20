@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
 import useAuth from "../../contexts/authContext.js";
 
 function Row({ u, deleteContact }) {
@@ -18,7 +17,6 @@ function Row({ u, deleteContact }) {
 					Delete
 				</button>
 			</td>
-			<td className="py-2">Update</td>
 		</tr>
 	);
 }
@@ -79,7 +77,6 @@ function AllContacts() {
 						<th>Email</th>
 						<th>Message</th>
 						<th>Delete</th>
-						<th>Update</th>
 					</tr>
 				</thead>
 				<tbody>
